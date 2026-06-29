@@ -29,7 +29,11 @@ function App() {
       setQrImage(qr);
     } catch (err) {
       console.log(err);
-      alert("Something went wrong");
+      if (err.response && err.response.data && err.response.data.error) {
+        alert(err.response.data.error); // shows "Too many requests..."
+      } else {
+        alert("Something went wrong");
+      }
     } finally {
       setLoading(false);
     }
